@@ -68,12 +68,27 @@ app.post("/add/teacher", async (req, res) => {
 });
 
 // Create a dynamic delete route to remove a teacher by their ID
+app.delete("/teachers/:id", async(req,res)=>{
+const response=  await Teacher.findByIdAndDelete(req.params.id);
+res.json(response);
+})
 
-
+// Create a dynamic patch route to update a teacher by their ID
+app.patch("/teachers/:id", async(req,res)=>{
+const response = await Teacher.findByIdAndUpdate(req.params.id, req.body, { new: true });
+res.json(response);
+})
 
 // Create a dynamic delete route to remove a rating by it's ID
   
- 
+ app.delete("/ratings/:id", async(req,res)=>{
+const response=  await Rating.findByIdAndDelete(req.params.id);
+res.json(response);
+ })
+app.patch("/ratings/:id", async(req,res)=>{
+const response = await Rating.findByIdAndUpdate(req.params.id, req.body, { new: true });
+res.json(response);
+})
 
 async function startServer() {
   await mongoose.connect(

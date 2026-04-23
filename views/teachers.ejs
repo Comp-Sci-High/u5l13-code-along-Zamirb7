@@ -45,8 +45,26 @@
           <div class="teacher-card-content">
             <h2><%= teachers[i].name %></h2>
             <p><strong>Department:</strong> <%= teachers[i].department %></p>
-            <!-- Add a button that calls a deleteTeacher function with their id passed as input -->
-             
+            
+            <!-- Edit Form for Teacher -->
+            <form class="edit-teacher-form" data-id="<%= teachers[i]._id %>" style="display:none;">
+              <label>Name: </label>
+              <input type="text" name="name" value="<%= teachers[i].name %>" required />
+              
+              <label>Department: </label>
+              <input type="text" name="department" value="<%= teachers[i].department %>" />
+              
+              <label>Image: </label>
+              <input type="text" name="image" value="<%= teachers[i].image %>" />
+              
+              <button type="submit">Save Changes</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+            
+            <div class="button-group">
+              <button onClick="deleteTeacher('<%= teachers[i]._id %>')">Delete</button>
+              <button class="edit-btn">Edit</button>
+            </div>
           </div>
         </div>
       <% } %>

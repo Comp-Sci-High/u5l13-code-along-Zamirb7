@@ -42,10 +42,10 @@
 
     </div>
 
-    <div class="teachers-grid">
+    <div class="ratings-grid">
       <% for (let i = 0; i < ratings.length; i++) { %>
-        <div class="teacher-card">
-          <div class="teacher-card-content">
+        <div class="rating-card">
+          <div class="rating-card-content">
             <h2><%= ratings[i].teacher %></h2>
             <div class="stars">
               <% for (let x = 0; x < ratings[i].rating; x++) { %>
@@ -57,8 +57,29 @@
             </div>
             <p><strong>Comment:</strong> <%= ratings[i].comment %></p>
             <p><em>By: <%= ratings[i].username %></em></p>
-            <!-- Add a button that calls a deleteRating function with its id passed as input -->
+            
+            <!-- Edit Form for Rating -->
+            <form class="edit-ratings-form" data-id="<%= ratings[i]._id %>" style="display:none;">
+              <label>Username: </label>
+              <input type="text" name="username" value="<%= ratings[i].username %>" />
 
+              <label>Teacher: </label>
+              <input type="text" name="teacher" value="<%= ratings[i].teacher %>" />
+
+              <label>Comment: </label>
+              <input type="text" name="comment" value="<%= ratings[i].comment %>" />
+
+              <label>Rating: </label>
+              <input type="number" name="rating" value="<%= ratings[i].rating %>" min="1" max="5" />
+              
+              <button type="submit">Save Changes</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+
+            <div class="button-group">
+              <button type="button" onClick="deleteRating('<%= ratings[i]._id %>')">Delete</button>
+              <button type="button" class="edit-btn">Edit</button>
+            </div>
           </div>
         </div>
       <% } %>
